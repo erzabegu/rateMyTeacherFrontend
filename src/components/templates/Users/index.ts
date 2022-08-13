@@ -1,1 +1,1 @@
-export { default as Users } from './users'
+export { default as UsersTemplate } from './UsersTemplate'

@@ -18,9 +18,10 @@ export const addUsers = async (data: any) => {
     }
 }
 
-export const modifyUsers = async (params: any) => {
+export const modifyUsers = async (params: any, data: any) => {
+    console.log(params, data)
     try {
-        return await request(RequestMethods.PUT, 'users', null, params);
+        return await request(RequestMethods.PUT, `users/${params}`, data);
     }
     catch (e) {
         console.log(e)

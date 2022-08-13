@@ -1,8 +1,8 @@
 import { Outlet, useRoutes } from "react-router-dom";
 import { AdminPanel, LandingPage, Login, ProfessorDetails, ProfessorsPage, RatingPage, RegisterPage, UserProfile } from "../components/pages";
-import { AccountDetails, Professors, SavedProfessors, UserRatings } from "../components/templates";
+import { AccountDetails, DepartmentsTemplate, Professors, SavedProfessors, UserRatings } from "../components/templates";
 import { SchoolsTemplate } from "../components/templates/Schools";
-import { Users } from "../components/templates/Users";
+import { UsersTemplate } from "../components/templates/Users";
 
 const Routing = () => {
     const routes = [
@@ -50,7 +50,8 @@ const Routing = () => {
                 { path: '', element: <h1>Dashboard</h1> },
                 { path: 'schools', element: <SchoolsTemplate /> },
                 { path: 'professors', element: <Professors /> },
-                { path: 'users', element: <Users /> }
+                { path: 'users', element: <UsersTemplate /> },
+                { path: 'departments', element: <DepartmentsTemplate /> }
             ]
         }
     ]

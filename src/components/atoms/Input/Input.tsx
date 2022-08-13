@@ -5,7 +5,7 @@ import './style.scss'
 interface Props extends FormControlProps { }
 
 const DefaultInput = (props: Props) => {
-    return <Form.Control className="defaultInput" {...props} />
+    return <Form.Control className="defaultInput" {...props} style={{ margin: '4px' }} />
 }
 
 export default DefaultInput;

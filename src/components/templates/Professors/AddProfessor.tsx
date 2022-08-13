@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Col, Modal, Container } from 'react-bootstrap';
-import { getSchools, getDepartments } from '../../../services';
-import { DefaultInput } from '../../atoms';
+import { getSchools, getDepartments, addProfessors, modifyProfessors } from '../../../services';
+import { DefaultInput, SelectInput } from '../../atoms';
 import { CustomMultiselect } from '../../atoms/CustomMultiselect';
 import { ActionMeta, OnChangeValue } from 'react-select';
+import { getOneSchool } from '../../../services/Schools/schoolsService';
+import { current } from '@reduxjs/toolkit';
 
 interface Props {
     show: boolean;
@@ -15,19 +17,15 @@ interface Props {
 const AddProfessor = ({ show, handleClose, handleShow, rowToEdit }: Props) => {
 
     const [editableRow, setEditableRow] = useState<any>(initialProfessorType);
-    const [departments, setDepartments] = useState<any>();
-    const [schools, setSchools] = useState<any>();
+    const [departments, setDepartments] = useState<any>([]);
+    const [schools, setSchools] = useState<any>([]);
+    const [schoolToRequest, setSchoolToRequest] = useState<any>();
+    const [list, setList] = useState<Array<any>>([]);
 
     useEffect(() => {
-        // getSchools().then((res: any) => { console.log(res.data) })
-        getDepartments().then((res: any) => {
-            //@ts-ignore
-            const t = res.data.map(({ _id, departmentName }) => ({ label: departmentName, value: _id }))
-            setDepartments(t)
-        })
         getSchools().then((res: any) => {
             //@ts-ignore
-            const t = res.data.map(({ _id, schoolName }) => ({ label: schoolName, value: _id }))
+            const t = res.data.map(({ _id, schoolName }) => ({ name: schoolName, value: _id }))
             setSchools(t)
         })
     }, [])
@@ -36,21 +34,20 @@ const AddProfessor = ({ show, handleClose, handleShow, rowToEdit }: Props) => {
         rowToEdit && setEditableRow(rowToEdit)
     }, [rowToEdit])
 
-    const selectNewOption = (userList: OnChangeValue<any, any>) => {
-        setEditableRow((currentUserDetails: any) => {
-            return { ...currentUserDetails, departments: [...userList] }
+    useEffect(() => {
+        schoolToRequest && getOneSchool(schoolToRequest).then((res: any) => {
+            setDepartments(res.data.departments)
         })
-    }
+    }, [schoolToRequest])
+
+
     const _selectNewOption = (userList: OnChangeValue<any, any>) => {
-        setEditableRow((currentUserDetails: any) => {
-            return { ...currentUserDetails, schools: [...userList] }
-        })
+        setEditableRow((currentUserDetails: any) => ({ ...currentUserDetails, departments: userList }))
     }
 
     const _removeSelectedOption = (userListFiltered: OnChangeValue<any, any>) => {
-        setEditableRow((currentUserDetails: any) => ({ ...currentUserDetails, schools: userListFiltered }))
+        setEditableRow((currentUserDetails: any) => ({ ...currentUserDetails, departments: userListFiltered }))
     }
-
 
     const removeSelectedOption = (userListFiltered: OnChangeValue<any, any>) => {
         setEditableRow((currentUserDetails: any) => ({ ...currentUserDetails, departments: userListFiltered }))
@@ -69,15 +66,14 @@ const AddProfessor = ({ show, handleClose, handleShow, rowToEdit }: Props) => {
                     placeholder='Professor Name'
                     value={editableRow.professorName}
                     onChange={(e: any) => setEditableRow({ ...editableRow, professorName: e.target.value })} />
-                <DefaultInput
-                    type={'text'}
-                    placeholder='School Name'
-                    value={editableRow.schoolName}
-                    onChange={(e: any) => setEditableRow({ ...editableRow, schoolName: e.target.value })} />
-                <CustomMultiselect
-                    label='Schools'
-                    options={schools}
-                    value={editableRow.schools}
+                <SelectInput options={schools} value={editableRow.schoolId} onChange={(e: any) => {
+                    setSchoolToRequest(e.target.value)
+                    setEditableRow({ ...editableRow, schoolId: e.target.value, schoolName: e.target.options[e.target.selectedIndex].innerHTML })
+                }} />
+                {<CustomMultiselect
+                    label='Departments'
+                    options={departments}
+                    value={editableRow.departments}
                     name={''}
                     onChange={(userList: OnChangeValue<any, any>, actionMeta: ActionMeta<any>) => {
                         switch (actionMeta.action) {
@@ -90,33 +86,24 @@ const AddProfessor = ({ show, handleClose, handleShow, rowToEdit }: Props) => {
                             default:
                                 return null;
                         }
-                    }} />
-                <CustomMultiselect
-                    label='Departments'
-                    options={departments}
-                    value={editableRow.departments}
-                    name={''}
-                    onChange={(userList: OnChangeValue<any, any>, actionMeta: ActionMeta<any>) => {
-                        switch (actionMeta.action) {
-                            case "select-option":
-                                return selectNewOption(userList);
-                            case "remove-value":
-                                return removeSelectedOption(userList);
-                            case "clear":
-                                return removeSelectedOption([]);
-                            default:
-                                return null;
-                        }
-                    }} />
+                    }} />}
             </Container>
             <Modal.Footer>
-                {rowToEdit && <Button variant="primary" onClick={handleClose}>
+                {rowToEdit && <Button variant="primary" onClick={() => {
+                    modifyProfessors(editableRow._id, editableRow)
+                    handleClose()
+                }}>
                     edit
                 </Button>}
-                {!rowToEdit && <Button variant="primary" onClick={handleClose}>
+                {!rowToEdit && <Button variant="primary" onClick={() => {
+                    addProfessors(editableRow)
+                    handleClose()
+                }}>
                     add
                 </Button>}
-                <Button variant="secondary" onClick={handleClose}>
+                <Button variant="secondary" onClick={() => {
+                    handleClose()
+                }}>
                     Close
                 </Button>
             </Modal.Footer>
@@ -125,9 +112,9 @@ const AddProfessor = ({ show, handleClose, handleShow, rowToEdit }: Props) => {
 }
 
 const initialProfessorType: any = {
-    _id: -1,
+    // _id: -1,
     professorName: '',
-    schools: [],
+    schoolName: '',
     departments: []
 }
 

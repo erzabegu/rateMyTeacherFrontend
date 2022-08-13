@@ -10,6 +10,15 @@ export const getSchools = async () => {
     }
 }
 
+export const getOneSchool = async (params: any) => {
+    try {
+        return await request(RequestMethods.GET, `schools/${params}`, null)
+    }
+    catch (e) {
+        return e
+    }
+}
+
 export const addSchool = async (data: any) => {
     try {
         const response = await request(RequestMethods.POST, 'schools', data)
@@ -21,9 +30,6 @@ export const addSchool = async (data: any) => {
 }
 
 export const modifySchool = async (data: any, params: any) => {
-    console.log('hie')
-    console.log(data)
-    console.log(params)
     try {
         const response = await request(RequestMethods.PUT, `schools/${params}`, data);
         return response

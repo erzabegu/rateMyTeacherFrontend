@@ -9,27 +9,27 @@ export const getDepartments = async () => {
     }
 }
 
-export const addProfessors = async (data: any) => {
+export const addDepartments = async (data: any) => {
     try {
-        return await request(RequestMethods.POST, 'professors', data)
+        return await request(RequestMethods.POST, 'departments', data)
     }
     catch (e) {
         console.log(e)
     }
 }
 
-export const modifyProfessors = async (params: any) => {
+export const modifyDepartments = async (params: any, data: any) => {
     try {
-        return await request(RequestMethods.PUT, 'professors', null, params);
+        return await request(RequestMethods.PUT, `departments/${params}`, data);
     }
     catch (e) {
         console.log(e)
     }
 }
 
-export const deleteProfessors = async (params: any) => {
+export const deleteDepartments = async (params: any) => {
     try {
-        return await request(RequestMethods.DELETE, 'professors', null, params);
+        return await request(RequestMethods.DELETE, 'departments', null, params);
     }
     catch (e) {
         console.log(e)

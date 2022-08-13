@@ -3,10 +3,16 @@ import { getSchools } from '../../../services'
 import { CustomTable } from '../../molecules/Table'
 import { PlusCircle } from 'react-bootstrap-icons'
 import AddSchoolDialog from './AddSchoolDialog';
+import ShowDepartments from './ShowDepartments';
 
 const SchoolsTemplate = () => {
 
     const [schools, setSchools] = useState<Array<any>>([]);
+    const [show, setShow] = useState(false);
+    const [showDepartments, setShowDepartments] = useState<boolean>(false);
+    const [rowToEdit, setRowToEdit] = useState();
+    const [departments, setDepartments] = useState<any>([]);
+
 
     useEffect(() => {
         getSchools().then((res: any) => {
@@ -28,17 +34,13 @@ const SchoolsTemplate = () => {
             {
                 Header: 'schoolZip',
                 accessor: 'schoolZip'
-            }
+            },
         ],
         []
     )
-
     const data = React.useMemo(() => schools, [schools]);
 
-    const [show, setShow] = useState(false);
-    const [rowToEdit, setRowToEdit] = useState();
-    const [showDetails, setShowDetails] = useState(false);
-
+    const handleShow = () => setShow(true);
 
     return <>
         <PlusCircle color={"#283779"} height={20} width={20} onClick={() => {
@@ -49,9 +51,28 @@ const SchoolsTemplate = () => {
         <AddSchoolDialog show={show} onClose={() => {
             setRowToEdit(undefined)
             setShow(false)
-        }} setShow={setShow} rowToEdit={rowToEdit} setRowToEdit={setRowToEdit} />
+        }} setShow={setShow} rowToEdit={rowToEdit} setRowToEdit={setRowToEdit} setSchools={setSchools} />
+        <ShowDepartments
+            onClose={() =>
+                setShowDepartments(true)
+            }
+            setShowDepartments={setShowDepartments}
+            showDepartments={showDepartments}
+            departments={departments}
+        />
 
-        {/* <CustomTable setShowDetails={setShowDetails} data={data} columns={columns} setRowToEdit={setRowToEdit} includeEdit show={show} setShow={setShow} /> */}
+        <CustomTable
+            data={data}
+            columns={columns}
+            showRowToEdit={(row: any) => {
+                setRowToEdit(row)
+                handleShow();
+            }}
+            showSchoolDepartments={(row: any) => {
+                setDepartments(row.departments)
+                setShowDepartments(true)
+            }}
+        />
     </>
 }
 

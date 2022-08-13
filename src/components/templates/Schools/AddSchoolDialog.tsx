@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Button, Col, Modal } from 'react-bootstrap';
 import { ActionMeta, OnChangeValue } from 'react-select';
 import { getDepartments } from '../../../services';
-import { addSchool, modifySchool } from '../../../services/Schools'
+import { addSchool, getSchools, modifySchool } from '../../../services/Schools'
 import { SchoolType } from '../../../types';
 import { DefaultInput } from '../../atoms';
 import { CustomMultiselect } from '../../atoms/CustomMultiselect';
@@ -13,14 +13,15 @@ interface Props {
     rowToEdit?: any;
     setRowToEdit?: any;
     onClose(): void;
+    setSchools: any;
 }
 
-const AddSchoolDialog = ({ show, setShow, rowToEdit, setRowToEdit, onClose }: Props) => {
+const AddSchoolDialog = ({ show, setShow, rowToEdit, setRowToEdit, onClose, setSchools }: Props) => {
     const [school, setSchool] = useState<SchoolType>(initialSchoolType);
     const [departments, setDepartments] = useState<any>([]);
 
     useEffect(() => {
-        rowToEdit && setSchool(rowToEdit);
+        rowToEdit && setSchool(rowToEdit)
     }, [rowToEdit])
 
 
@@ -43,11 +44,22 @@ const AddSchoolDialog = ({ show, setShow, rowToEdit, setRowToEdit, onClose }: Pr
         setSchool(currentUserDetails => ({ ...currentUserDetails, departments: userListFiltered }))
     }
 
+    const _addSchool = (school: SchoolType) => {
+        addSchool(school).then(() => {
+            getSchools().then((res: any) => setSchools(res.data))
+        })
+    }
+
+    const _modifySchool = (school: SchoolType, schoolID: any) => {
+        schoolID && modifySchool(school, schoolID).then(() => {
+            getSchools().then((res: any) => setSchools(res.data))
+        })
+    }
 
     return (
         <Modal show={show} onHide={() => setShow(false)}>
             <Modal.Header closeButton>
-                <Modal.Title>Add school</Modal.Title>
+                {rowToEdit ? <h5>Edit school</h5> : <h5>Add school</h5>}
             </Modal.Header>
             <Modal.Body>
                 <DefaultInput
@@ -66,7 +78,7 @@ const AddSchoolDialog = ({ show, setShow, rowToEdit, setRowToEdit, onClose }: Pr
                     value={school.schoolLocation}
                     onChange={(e) => setSchool({ ...school, schoolLocation: e.target.value })} />
                 <CustomMultiselect
-                    label='smth'
+                    label='Departments'
                     options={departments}
                     value={school.departments}
                     name={''}
@@ -85,7 +97,7 @@ const AddSchoolDialog = ({ show, setShow, rowToEdit, setRowToEdit, onClose }: Pr
             </Modal.Body>
             <Modal.Footer>
                 {rowToEdit && <Button variant="primary" onClick={() => {
-                    modifySchool(school, school._id)
+                    _modifySchool(school, school._id)
                     onClose();
                 }}>
                     Save Changes
@@ -93,7 +105,7 @@ const AddSchoolDialog = ({ show, setShow, rowToEdit, setRowToEdit, onClose }: Pr
                 </Button>}
                 {!rowToEdit &&
                     <Button variant="secondary" onClick={() => {
-                        addSchool(school)
+                        _addSchool(school)
                         setSchool(initialSchoolType)
                         setShow(false)
                     }}>
@@ -107,7 +119,6 @@ const AddSchoolDialog = ({ show, setShow, rowToEdit, setRowToEdit, onClose }: Pr
 }
 
 const initialSchoolType: SchoolType = {
-    _id: -1,
     schoolName: '',
     schoolZip: '',
     schoolLocation: '',

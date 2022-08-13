@@ -12,7 +12,6 @@ const Professors = () => {
 
     useEffect(() => {
         getProfessors().then((res: any) => {
-            console.log(res.data)
             setProfessors(res.data)
         })
         getSchools().then((res: any) => {
@@ -30,10 +29,7 @@ const Professors = () => {
                 Header: 'schoolName',
                 accessor: 'schoolName',
             },
-            {
-                Header: 'departments',
-                accessor: 'departments'
-            }
+
         ],
         []
     )

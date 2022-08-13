@@ -1,5 +1,5 @@
 export interface SchoolType {
-    _id: number;
+    _id?: number;
     schoolName: string;
     schoolZip: string;
     schoolLocation: string;

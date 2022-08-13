@@ -18,9 +18,10 @@ export const addProfessors = async (data: any) => {
     }
 }
 
-export const modifyProfessors = async (params: any) => {
+export const modifyProfessors = async (params: any, data: any) => {
+    console.log('hi')
     try {
-        return await request(RequestMethods.PUT, 'professors', null, params);
+        return await request(RequestMethods.PUT, `professors/${params}`, data);
     }
     catch (e) {
         console.log(e)
