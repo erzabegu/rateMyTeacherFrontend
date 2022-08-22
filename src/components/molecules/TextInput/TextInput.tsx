@@ -5,6 +5,7 @@ interface Props {
     placeholder: string;
     style?: any;
     className?: any;
+    onChange?(e: any): void;
 }
 const TextInput = (props: Props) => {
     return (<Col>

@@ -36,3 +36,21 @@ export const deleteUsers = async (params: any) => {
         console.log(e)
     }
 }
+
+export const login = async (data: any) => {
+    try {
+        return await request(RequestMethods.POST, 'users/login', data)
+    }
+    catch (e) {
+        return e
+    }
+}
+
+export const register = async (data: any) => {
+    try {
+        return await request(RequestMethods.POST, 'signup', data)
+    }
+    catch (e) {
+        return e
+    }
+}

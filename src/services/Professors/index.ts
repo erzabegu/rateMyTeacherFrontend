@@ -1,1 +1,1 @@
-export { getProfessors, modifyProfessors, deleteProfessors, addProfessors } from './professorsService'
+export { getProfessors, modifyProfessors, deleteProfessors, addProfessors, getProfessorByName } from './professorsService'

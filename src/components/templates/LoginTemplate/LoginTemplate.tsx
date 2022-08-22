@@ -1,14 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Container, Col, InputGroup, Row } from 'react-bootstrap'
 import { Key, People, Person } from 'react-bootstrap-icons'
 import { DefaultImage, DefaultInput, MyButton } from '../../atoms'
 import Team from '../../../assets/images/team.png'
 import './LoginTemplate.scss'
 import { Header } from '../../molecules'
+import { ToastContainer } from 'react-toastify'
 
-const LoginTemplate = () => {
+interface Props {
+    _login(data: any): void;
+}
+
+const LoginTemplate = (props: Props) => {
+    const [loginUser, setLoginUser] = useState<any>({})
     return <>
-        <Header isLoggedIn={true} isOk={true}/>
+        <Header isLoggedIn={true} isOk={true} />
         <Container fluid className="">
             <Row>
                 <Col className="d-flex flex-column">
@@ -22,15 +28,15 @@ const LoginTemplate = () => {
                         <Col lg={6} className='d-flex flex-column jusfify-content-left mt-5 mt-b'>
                             <InputGroup className="mb-3">
                                 <InputGroup.Text id="basic-addon1"><Person /></InputGroup.Text>
-                                <DefaultInput type='email' placeholder='Username' />
+                                <DefaultInput type='text' placeholder='Username' onChange={(e) => setLoginUser({ ...loginUser, email: e.target.value })} />
                             </InputGroup>
                             <InputGroup className="mb-3">
                                 <InputGroup.Text id="basic-addon1"><Key /></InputGroup.Text>
-                                <DefaultInput type='password' placeholder='Password' />
+                                <DefaultInput type='password' placeholder='Password' onChange={(e) => setLoginUser({ ...loginUser, password: e.target.value })} />
                             </InputGroup>
                             <Row className='d-flex flex-row align-items-center  mt-4'>
                                 <Col lg={6}>
-                                    <MyButton title="Login" style={{ width: '8rem', backgroundColor: '#DAEBFD', border: 'none', color: 'black' }}></MyButton>
+                                    <MyButton title="Login" onClick={() => props._login(loginUser)} style={{ width: '8rem', backgroundColor: '#DAEBFD', border: 'none', color: 'black' }}></MyButton>
                                 </Col>
                                 <Col lg={6}>
                                     <span className='text-muted' style={{ fontSize: '15px' }}> Forget password</span>

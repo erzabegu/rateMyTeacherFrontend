@@ -18,6 +18,16 @@ export const addProfessors = async (data: any) => {
     }
 }
 
+export const getProfessorByName = async (param: any) => {
+    console.log(param, 'param')
+    try {
+        return await request(RequestMethods.GET, `professors/byName/${param}`, null)
+    }
+    catch (e) {
+        console.log(e)
+    }
+}
+
 export const modifyProfessors = async (params: any, data: any) => {
     console.log('hi')
     try {

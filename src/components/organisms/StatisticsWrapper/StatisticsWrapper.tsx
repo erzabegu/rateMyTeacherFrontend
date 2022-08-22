@@ -10,7 +10,7 @@ interface Props {
 const StatisticsWrapper = ({ statistics }: Props) => {
     return (
         <Row>
-            {statistics.map((statistic) => <StatisticsBox {...statistic} />)}
+            {statistics.map((statistic, key) => <StatisticsBox key={key} {...statistic} />)}
         </Row>
     )
 }

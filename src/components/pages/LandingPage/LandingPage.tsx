@@ -1,7 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { getProfessorByName } from '../../../services'
 import { LandingTemplate } from '../../templates'
 
 const LandingPage = () => {
+    const [searchTerm, setSearchTerm] = useState<string>('')
+    const [professorsToRender, setProfessorsToRender] = useState<Array<any>>([]);
+
+    useEffect(() => {
+        getProfessorByName(searchTerm).then((res: any) => setProfessorsToRender(res?.data))
+    }, [searchTerm])
 
     const statistics = [{
         iconName: 'professor',
@@ -24,7 +31,7 @@ const LandingPage = () => {
         iconText: 'Users'
     }]
 
-    return <LandingTemplate statistics={statistics} />
+    return <LandingTemplate statistics={statistics} searchTerm={searchTerm} setSearchTerm={setSearchTerm} professorsToRender={professorsToRender} />
 }
 
 export default LandingPage

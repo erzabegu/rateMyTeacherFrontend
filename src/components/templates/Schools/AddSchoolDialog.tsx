@@ -7,6 +7,8 @@ import { SchoolType } from '../../../types';
 import { DefaultInput } from '../../atoms';
 import { CustomMultiselect } from '../../atoms/CustomMultiselect';
 
+
+
 interface Props {
     show?: boolean;
     setShow?: any;
@@ -44,10 +46,18 @@ const AddSchoolDialog = ({ show, setShow, rowToEdit, setRowToEdit, onClose, setS
         setSchool(currentUserDetails => ({ ...currentUserDetails, departments: userListFiltered }))
     }
 
+
     const _addSchool = (school: SchoolType) => {
-        addSchool(school).then(() => {
-            getSchools().then((res: any) => setSchools(res.data))
-        })
+        if (school.schoolName !== '' && school.schoolLocation !== "" && school.schoolZip !== "") {
+            console.log('erza')
+            addSchool(school).then(() => {
+                getSchools().then((res: any) => setSchools(res.data))
+            })
+        }
+        else {
+
+
+        }
     }
 
     const _modifySchool = (school: SchoolType, schoolID: any) => {
@@ -94,6 +104,7 @@ const AddSchoolDialog = ({ show, setShow, rowToEdit, setRowToEdit, onClose, setS
                                 return null;
                         }
                     }} />
+
             </Modal.Body>
             <Modal.Footer>
                 {rowToEdit && <Button variant="primary" onClick={() => {

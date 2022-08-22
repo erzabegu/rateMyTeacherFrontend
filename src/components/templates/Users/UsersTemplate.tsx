@@ -31,7 +31,7 @@ const Users = () => {
             },
             {
                 Header: 'RoleId',
-                accessor: 'RoleID',
+                accessor: 'userRoleName',
             },
             {
                 Header: 'email',

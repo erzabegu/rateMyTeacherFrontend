@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Col, Modal } from 'react-bootstrap';
 import { ActionMeta, OnChangeValue } from 'react-select';
-import { addUsers, modifyUsers } from '../../../services';
+import { addUsers, getUserRoles, modifyUsers } from '../../../services';
 import { UserType } from '../../../types';
-import { DefaultInput } from '../../atoms';
+import { CheckInputs, DefaultInput, SelectInput } from '../../atoms';
 
 interface Props {
     show?: boolean;
@@ -16,11 +16,19 @@ interface Props {
 
 const AddUserDialog = ({ show, setShow, rowToEdit, setRowToEdit, onClose, setSchools }: Props) => {
     const [user, setUser] = useState(initialUserType)
-    const [userRoles, setUserRoles] = useState()
+    const [userRoles, setUserRoles] = useState<Array<any>>([])
 
     useEffect(() => {
         rowToEdit && setUser(rowToEdit)
     }, [rowToEdit])
+
+    useEffect(() => {
+        getUserRoles().then((res: any) => {
+            //@ts-ignore
+            const t = res.data.map(({ _id, userRoleName }) => ({ name: userRoleName, value: _id }))
+            setUserRoles(t)
+        })
+    }, [])
 
     return (
         <Modal show={show} onHide={() => setShow(false)}>
@@ -48,6 +56,9 @@ const AddUserDialog = ({ show, setShow, rowToEdit, setRowToEdit, onClose, setSch
                     placeholder='Password'
                     value={user.password}
                     onChange={(e) => setUser({ ...user, password: e.target.value })} />
+                <SelectInput options={userRoles} onChange={(e: any) => {
+                    setUser({ ...user, roleId: e.target.value, userRoleName: e.target.options[e.target.selectedIndex].innerHTML })
+                }} />
                 {/* <CustomMultiselect
                     label='smth'
                     options={departments}
@@ -89,10 +100,10 @@ const AddUserDialog = ({ show, setShow, rowToEdit, setRowToEdit, onClose, setSch
 }
 
 const initialUserType: UserType = {
-    _id: "",
     name: "",
     surname: "",
     roleId: "",
+    userRoleName: "",
     email: "",
     password: "",
 }

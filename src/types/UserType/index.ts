@@ -5,4 +5,5 @@ export interface UserType {
     roleId?: string;
     email?: string;
     password?: string;
+    userRoleName?: string;
 }
