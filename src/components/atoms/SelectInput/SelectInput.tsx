@@ -9,7 +9,7 @@ interface Props {
 
 const SelectInput = ({ options, onChange, value }: Props) => {
     return (
-        <Form.Select style={{ width: '200px' }} onChange={onChange} value={value}>
+        <Form.Select style={{ width: '200px' }} onChange={onChange} value={value} >
             {options.map((option, index) => <option value={option.value} key={index}>{option.name}</option>)}
         </Form.Select>
     )

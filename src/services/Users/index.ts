@@ -1,1 +1,1 @@
-export { getUsers, addUsers, modifyUsers, deleteUsers } from './UsersService';
+export { getUsers, addUsers, modifyUsers, deleteUsers, forgotPassword, resetPassword } from './UsersService';

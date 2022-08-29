@@ -8,9 +8,10 @@ import { ProfessorsList } from '../../organisms/ProfessorsList'
 interface Props {
     options: Array<any>;
     professorsList: Array<ProfessorType>;
+    numberOfRatings?: any;
 }
 
-const ProfessorTemplate = ({ options, professorsList }: Props) => {
+const ProfessorTemplate = ({ options, professorsList, numberOfRatings }: Props) => {
     return <>
         {/* <Header isLoggedIn={true} /> */}
         <Container className='mt-5'>
@@ -18,7 +19,7 @@ const ProfessorTemplate = ({ options, professorsList }: Props) => {
                 <DepartmentsList options={options} text={"Departments"} />
             </Col>
             <Row>
-                <ProfessorsList professorsList={professorsList} />
+                <ProfessorsList numberOfRatings={numberOfRatings} professorsList={professorsList} />
             </Row>
         </Container>
     </>

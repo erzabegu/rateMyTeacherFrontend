@@ -1,9 +1,9 @@
 export interface UserType {
-    _id?: number | string;
-    name: string;
-    surname?: string;
-    roleId?: string;
+    _id?: string;
+    firstName: string;
+    lastName?: string;
     email?: string;
     password?: string;
     userRoleName?: string;
+    userName?: string;
 }

@@ -1,0 +1,1 @@
+export { default as RateTemplate } from './Rate'

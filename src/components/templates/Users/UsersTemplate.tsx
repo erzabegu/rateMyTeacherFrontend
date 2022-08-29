@@ -10,24 +10,19 @@ const Users = () => {
     const [userRole, setUserRole] = useState<any>();
 
     useEffect(() => {
-        getUsers().then((res: any) => {
-            setUsers(res.data)
-        })
-        Promise.all([getUsers(), getUserRoles()]).then((res: any) => {
-            setUsers(res[0].data)
-            setUserRole(res[1].data)
-        })
+        getUsers().then((res: any) => setUsers(res.data))
+        getUserRoles().then((res: any) => setUserRole(res.data))
     }, [])
 
     const columns = React.useMemo(
         () => [
             {
                 Header: 'name',
-                accessor: 'name',
+                accessor: 'firstName',
             },
             {
                 Header: 'surname',
-                accessor: 'surname',
+                accessor: 'lastName',
             },
             {
                 Header: 'RoleId',
@@ -37,10 +32,6 @@ const Users = () => {
                 Header: 'email',
                 accessor: 'email',
             },
-            {
-                Header: 'password',
-                accessor: 'password',
-            }
         ],
         []
     )
@@ -60,7 +51,7 @@ const Users = () => {
         <AddUserDialog show={show} onClose={() => {
             setRowToEdit(undefined)
             setShow(false)
-        }} setShow={setShow} rowToEdit={rowToEdit} setRowToEdit={setRowToEdit} setSchools={setUsers} />
+        }} setShow={setShow} rowToEdit={rowToEdit} setRowToEdit={setRowToEdit} setUsers={setUsers} />
 
         <CustomTable data={data} columns={columns} showRowToEdit={(row: any) => {
             setRowToEdit(row)

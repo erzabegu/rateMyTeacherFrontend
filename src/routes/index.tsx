@@ -1,10 +1,19 @@
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Outlet, useRoutes } from "react-router-dom";
-import { AdminPanel, LandingPage, Login, ProfessorDetails, ProfessorsPage, RatingPage, RegisterPage, UserProfile } from "../components/pages";
+import { AdminPanel, LandingPage, Login, ProfessorDetails, ProfessorsPage, RatingPage, RegisterPage, ResetPassword, UserProfile } from "../components/pages";
 import { AccountDetails, DepartmentsTemplate, Professors, SavedProfessors, UserRatings } from "../components/templates";
 import { SchoolsTemplate } from "../components/templates/Schools";
 import { UsersTemplate } from "../components/templates/Users";
+import { ProtectedRoute } from "./protectedRoute";
 
 const Routing = () => {
+
+    const user = useSelector(state => (state as any).user)
+    useEffect(() => {
+        console.log(user, 'user')
+    }, [user])
+
     const routes = [
         {
             path: '*',
@@ -31,8 +40,12 @@ const Routing = () => {
             element: <ProfessorDetails />
         },
         {
-            path: 'rating',
+            path: 'rate/:id',
             element: <RatingPage />
+        },
+        {
+            path: 'reset/:email',
+            element: <ResetPassword />
         },
         {
             path: 'user-profile',
@@ -45,7 +58,7 @@ const Routing = () => {
         },
         {
             path: 'admin',
-            element: <AdminPanel />,
+            element: <ProtectedRoute isAuth={user.userRoleName === "admin"} component={AdminPanel} />,
             children: [
                 { path: '', element: <h1>Dashboard</h1> },
                 { path: 'schools', element: <SchoolsTemplate /> },

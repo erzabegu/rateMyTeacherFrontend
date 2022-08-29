@@ -10,14 +10,10 @@ interface Props {
 }
 
 const RegisterTemplate = (props: Props) => {
-    const [user, setUser] = useState<any>({})
-
-    useEffect(() => {
-        console.log(user, 'user')
-    }, [user])
+    const [user, setUser] = useState<any>({ userRoleName: 'user' })
     return <>
         <Container fluid className="loginWrapper" style={{ minHeight: '98.5vh' }}>
-            <Header isLoggedIn={false} isOk={true} />
+            <Header register={true} />
             <Col className='mx-auto mt-5' lg={4}  >
                 <div className="registerContainer">
                     <PersonPlus height={50} width={50} className="mt-2" />

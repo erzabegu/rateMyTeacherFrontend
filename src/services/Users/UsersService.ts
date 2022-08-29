@@ -19,7 +19,6 @@ export const addUsers = async (data: any) => {
 }
 
 export const modifyUsers = async (params: any, data: any) => {
-    console.log(params, data)
     try {
         return await request(RequestMethods.PUT, `users/${params}`, data);
     }
@@ -49,6 +48,24 @@ export const login = async (data: any) => {
 export const register = async (data: any) => {
     try {
         return await request(RequestMethods.POST, 'signup', data)
+    }
+    catch (e) {
+        return e
+    }
+}
+
+export const forgotPassword = async (data: any) => {
+    try {
+        return await request(RequestMethods.POST, 'users/forget', data)
+    }
+    catch (e) {
+        return e
+    }
+}
+
+export const resetPassword = async (data: any) => {
+    try {
+        return await request(RequestMethods.POST, 'users/reset', data)
     }
     catch (e) {
         return e

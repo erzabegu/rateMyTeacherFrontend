@@ -11,6 +11,7 @@ const RatingTemplate = ({ listOfQuestions }: Props) => {
         {/* <Header /> */}
         <Col xs={12} md={6} className="mx-auto">
             <QuestionList listOfQuestions={listOfQuestions} />
+            <button type='submit'>Submit</button>
         </Col>
     </Container>
 }

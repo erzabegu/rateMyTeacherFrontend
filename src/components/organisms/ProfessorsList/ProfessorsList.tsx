@@ -5,12 +5,14 @@ import { ProfessorCard } from '../../molecules'
 
 interface Props {
     professorsList: Array<ProfessorType>,
+    quality?: any;
+    numberOfRatings: number;
 }
 
-const ProfessorsList = ({ professorsList }: Props) => {
+const ProfessorsList = ({ professorsList, quality, numberOfRatings }: Props) => {
     return (
         <Row className="mt-5">
-            {professorsList.map((prof, index) => <ProfessorCard key={index} {...prof} />)}
+            {professorsList.map((prof, index) => <ProfessorCard key={index} numberOfRatings={numberOfRatings} quality={quality} {...prof} />)}
         </Row>
     )
 }

@@ -22,7 +22,7 @@ const LandingTemplate = ({ statistics, searchTerm, setSearchTerm, professorsToRe
         debouncedSearch(e.target.value);
     }
     return (<>
-        <Header />
+        <Header initialState={true} />
         <div className="landingTemplateContainer">
             <SearchBox onChange={(e) => handleChange(e)} professorsToRender={professorsToRender} />
 

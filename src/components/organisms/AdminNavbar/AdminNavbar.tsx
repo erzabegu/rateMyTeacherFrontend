@@ -10,7 +10,6 @@ const AdminNavbar = () => {
         { path: 'schools', title: 'Schools' },
         { path: 'professors', title: 'Professors' },
         { path: 'users', title: 'Users' },
-        { path: 'questions', title: 'Questions' },
         { path: 'departments', title: 'Departments' },
     ]
     return <>

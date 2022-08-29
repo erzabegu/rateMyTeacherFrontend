@@ -9,13 +9,10 @@ interface Props {
     tooltipArray?: Array<string>;
     showTooltip?: boolean;
     tooltipStyle?: any;
+    handleRating?(rate: number): void;
 }
-const RatingStars = ({ rating, fullIcon, emptyIcon, readonly, tooltipArray, showTooltip, tooltipStyle }: Props) => {
+const RatingStars = ({ rating, fullIcon, emptyIcon, readonly, tooltipArray, showTooltip, tooltipStyle, handleRating }: Props) => {
 
-    const handleRating = (rate: number) => {
-        console.log(rate)
-        // setRating(rate)
-    }
     return <>
         <Rating onClick={handleRating} ratingValue={rating} tooltipStyle={tooltipStyle} showTooltip={showTooltip} tooltipArray={tooltipArray} fullIcon={fullIcon} emptyIcon={emptyIcon} readonly={readonly} />
     </>

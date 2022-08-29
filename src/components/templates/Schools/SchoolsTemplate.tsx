@@ -41,17 +41,22 @@ const SchoolsTemplate = () => {
     const data = React.useMemo(() => schools, [schools]);
 
     const handleShow = () => setShow(true);
+    const handleClose = () => {
+        setRowToEdit(undefined)
+        setShow(false)
+    };
 
     return <>
         <PlusCircle color={"#283779"} height={20} width={20} onClick={() => {
-            setRowToEdit(undefined)
-            setShow(true)
+            setRowToEdit(undefined);
+            setShow(true);
         }} />
 
-        <AddSchoolDialog show={show} onClose={() => {
-            setRowToEdit(undefined)
-            setShow(false)
-        }} setShow={setShow} rowToEdit={rowToEdit} setRowToEdit={setRowToEdit} setSchools={setSchools} />
+        <AddSchoolDialog
+            show={show}
+            handleClose={handleClose}
+            rowToEdit={rowToEdit}
+            setSchools={setSchools} />
         <ShowDepartments
             onClose={() =>
                 setShowDepartments(true)

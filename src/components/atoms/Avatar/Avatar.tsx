@@ -6,7 +6,7 @@ interface Props extends UserType { }
 
 const Avatar = (props: Props) => {
     return (
-        <><div className='avatar'>{props.name[0].toUpperCase()}</div></>
+        <><div className='avatar'>{props.firstName[0].toUpperCase()}</div></>
     )
 }
 
