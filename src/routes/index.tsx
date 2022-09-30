@@ -17,7 +17,7 @@ const Routing = () => {
     const routes = [
         {
             path: '*',
-            element: <h1>Not found bro</h1>
+            element: <h1>Not found</h1>
         },
         {
             path: '',

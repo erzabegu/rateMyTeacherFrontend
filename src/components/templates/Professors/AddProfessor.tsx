@@ -32,6 +32,11 @@ const AddProfessor = ({ show, handleClose, rowToEdit, setProfessors }: Props) =>
             const t = res.data.map(({ _id, schoolName }) => ({ name: schoolName, value: _id }))
             setSchools(t)
         })
+        getDepartments().then((res: any)=>{
+            //@ts-ignore
+            const t = res.data.map(({ _id, departmentName }) => ({ label: departmentName, value: _id }))
+            setDepartments(t)
+        })
     }, [])
 
     useEffect(() => {
