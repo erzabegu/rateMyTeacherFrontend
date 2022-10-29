@@ -7,7 +7,7 @@ const LandingPage = () => {
     const [professorsToRender, setProfessorsToRender] = useState<Array<any>>([]);
 
     useEffect(() => {
-        getProfessorByName(searchTerm).then((res: any) => setProfessorsToRender(res?.data))
+        searchTerm && getProfessorByName(searchTerm).then((res: any) => setProfessorsToRender(res?.data))
     }, [searchTerm])
 
     const statistics = [{

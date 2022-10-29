@@ -1,12 +1,16 @@
 import React from 'react'
-import { UserType } from '../../../types'
+import {UserType} from '../../../types'
 import './style.scss'
 
-interface Props extends UserType { }
+interface Props extends UserType {
+    onClick?(e: React.MouseEvent<HTMLButtonElement>): void;
+}
 
 const Avatar = (props: Props) => {
     return (
-        <><div className='avatar'>{props.firstName[0].toUpperCase()}</div></>
+        <>
+            <button onClick={props.onClick} className='avatar'>{props.firstName[0].toUpperCase()}</button>
+        </>
     )
 }
 

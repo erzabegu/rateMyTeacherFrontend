@@ -3,6 +3,7 @@ import { Container } from 'react-bootstrap';
 import { useParams } from 'react-router-dom'
 import { getById, modifyProfessors, showResults } from '../../../services/Professors/professorsService';
 import { ProfessorDetailsTemplate } from '../../templates/ProfessorDetailsTemplate'
+import {Header} from "../../molecules";
 
 const ProfessorDetails = () => {
     const { id } = useParams();
@@ -38,6 +39,7 @@ const ProfessorDetails = () => {
             degreeName: 'awesome'
         }]
     return <>
+        <Header color={'#EAF3FA'}/>
         <Container className='mt-5'>
             <ProfessorDetailsTemplate professorDegrees={professorDegrees} numberOfRatings={results?.numberOfRatings} professorProfile={professorProfile} quality={results?.quality} comments={results?.textArea} />
         </Container>

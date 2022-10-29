@@ -1,10 +1,11 @@
-import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
-import { setAutoFreeze } from 'immer';
-import { useDispatch } from "react-redux";
+import {Action, configureStore, ThunkAction} from "@reduxjs/toolkit";
+import {setAutoFreeze} from 'immer';
+import {useDispatch} from "react-redux";
 import userSlice from "./slices/user.slice";
-import { persistStore, persistReducer } from 'redux-persist'
+import {persistStore, persistReducer} from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 import thunk from 'redux-thunk';
+import {composeWithDevTools} from 'redux-devtools-extension';
 
 setAutoFreeze(false);
 
@@ -13,14 +14,16 @@ const persistConfig = {
     storage,
 }
 
+
 const persistedReducer = persistReducer(persistConfig, userSlice)
+
 export const store = configureStore({
     reducer: persistedReducer,
-    middleware: [thunk]
+    middleware: [thunk],
+    // composeWithDevTools
 })
 
 export const persistor = persistStore(store)
-
 
 // export default store;
 
