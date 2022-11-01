@@ -3,11 +3,10 @@ import {StatisticsType} from '../../../types'
 import {Header} from '../../molecules'
 import {AboutUs, Footer, SearchBox, StatisticsWrapper} from '../../organisms'
 import {debounce} from "lodash";
-import ReactSearchBox from "react-search-box";
 import './style.scss'
 
 interface Props {
-    statistics: Array<StatisticsType>;
+    statistics: any;
     searchTerm?: any;
     setSearchTerm?: any;
     professorsToRender?: any;
@@ -18,22 +17,23 @@ const LandingTemplate = ({statistics, searchTerm, setSearchTerm, professorsToRen
         setSearchTerm(criteria);
     }, 300);
 
+
     async function handleChange(e: any) {
         debouncedSearch(e.target.value);
     }
 
     return (<>
-            <Header initialState={true}/>
             <div className="landingTemplateContainer">
+                <Header initialState={true} textColor={'white'}/>
                 <SearchBox onChange={(e) => handleChange(e)} professorsToRender={professorsToRender}/>
             </div>
             <Container className='mt-5'>
                 <AboutUs/>
                 <StatisticsWrapper statistics={statistics}></StatisticsWrapper>
             </Container>
-            <Container fluid style={{backgroundColor: '#234262', color: 'white'}}>
+            <div style={{backgroundColor: '#151515', color: 'white' ,display: 'flex', flexDirection: 'column', justifyContent: 'center'}} className={'pt-5 pb-5'}>
                 <Footer/>
-            </Container>
+            </div>
         </>
     )
 }

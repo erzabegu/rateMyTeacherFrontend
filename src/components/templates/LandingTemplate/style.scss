@@ -1,10 +1,12 @@
 @import '../../../styles';
 
 .landingTemplateContainer {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('../../../assets/images/new.png');
+    //background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('../../../assets/images/new.png');
+
+    background-image: url("http://educavo.rstheme.com/static/media/1.bd54f27a.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    height: 90vh;
+    height: 100vh;
     color: $primaryColor;
     font-weight: bold;
     position: relative;

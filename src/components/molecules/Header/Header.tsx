@@ -18,9 +18,10 @@ interface Props {
     register?: boolean;
     login?: boolean;
     color?: string;
+    textColor?: string;
 }
 
-const Header = ({initialState, register, login, color}: Props) => {
+const Header = ({initialState, register, login, color, textColor}: Props) => {
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -42,15 +43,16 @@ const Header = ({initialState, register, login, color}: Props) => {
         console.log(location.pathname)
     }, [location])
 
-    return <Container fluid style={{padding: '0px 16px', backgroundColor: color, marginTop: '0px'}}>
+    return <Container fluid style={{padding: '10px 40px', backgroundColor: color, marginTop: '0px'}}>
         <Row className='pt-2 pb-1'>
             <Col xs={7} md={9} xl={10}>
-                <div onClick={() => navigate('/')} style={{cursor: 'pointer'}}>
-                    <MortarboardFill color={"#283779"} height={40} width={40}/>
-                    <span style={{paddingLeft: '10px'}}>Rate Teacher</span>
+                <div onClick={() => navigate('/')} style={{cursor: 'pointer', color: textColor ?? "#283779"}}>
+                    <MortarboardFill height={40} width={40}/>
+                    <span style={{paddingLeft: '10px'}}> Rate Teacher</span>
+
                 </div>
             </Col>
-            <Col xs={5} md={3} xl={2} style={{textAlign: 'right', color: "#283779"}}>
+            <Col xs={5} md={3} xl={2} style={{textAlign: 'right', color: textColor ?? "#283779"}}>
                 {!isLoggedIn && initialState && <>
                     <Person/>
                     <MyButton size={'sm'} className="loginButtonStyle" title='Login'
@@ -58,10 +60,12 @@ const Header = ({initialState, register, login, color}: Props) => {
                     <MyButton size={'sm'} className="registerButtonStyle" title='Register'
                               onClick={() => navigate('/register')}/>
                 </>}
-                {!isLoggedIn && register && <MyButton size={'sm'} className="loginButtonStyle" title='Login'
-                                                      onClick={() => navigate('/login')}/>}
-                {!isLoggedIn && login && <MyButton size={'sm'} className="loginButtonStyle" title='Register'
-                                                   onClick={() => navigate('/register')}/>}
+                {!isLoggedIn && register &&
+                    <MyButton color={textColor ?? "#283779"} size={'sm'} className="loginButtonStyle" title='Login'
+                              onClick={() => navigate('/login')}/>}
+                {!isLoggedIn && login &&
+                    <MyButton size={'sm'} color={textColor ?? "#283779"} className="loginButtonStyle" title='Register'
+                              onClick={() => navigate('/register')}/>}
                 {isLoggedIn && <div className='styledAvatar'>
                     <Avatar onClick={(e) => handleClick(e)} firstName={firstName && firstName}/>
                 </div>}

@@ -1,0 +1,41 @@
+hr {
+  color: #FF5420 !important;
+  width: 60px;
+  height: 3px !important;
+  font-weight: bold;
+}
+
+ul {
+  //all: unset;
+  margin-inline-start: 0px !important;
+  margin-block-start: 0px !important;
+  margin-top: 0px !important;
+  padding-top: 0px;
+  padding-inline-start: 0px;
+}
+
+.ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.ul .span::before {
+  content: "  \25A0";
+  color: #FF5420;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  //margin-left: -1em;
+  margin-right: 10px;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+}

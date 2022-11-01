@@ -1,23 +1,30 @@
 .statisticsBox {
-    background-color: #fafafd !important;
-    border: none !important;
-    text-align: center;
-    padding: 50px;
+  display: flex !important;
+  justify-content: center;
+  background-color: #181F32 !important;
+  border-radius: 5px;
+  border: none !important;
+  color: white;
+  text-align: center;
+  padding: 50px;
+  transition: all 1s;
+  align-items: center;
 
-    &:hover {
-        background: rgba(255, 255, 255, 0.35) !important;
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-        backdrop-filter: blur(0px);
-        -webkit-backdrop-filter: blur(0px);
-        border-radius: 10px;
-        border: 1px solid rgba(141, 141, 141, 0.18);
-        transform: translate(0px, -20px);
-        transition: all 1s;
-    }
+  h4 {
+    margin-left: 20px;
+  }
 
-    // box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    // backdrop-filter: blur( 5.5px );
-    // -webkit-backdrop-filter: blur( 5.5px );
-    // border-radius: 10px;
-    // border: 1px solid rgba( 255, 255, 255, 0.18 );
+  &:hover {
+    background: rgba(255, 255, 255, 0.35) !important;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    color: black;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    border-radius: 10px;
+    border: 1px solid rgba(141, 141, 141, 0.18);
+    transform: translate(0px, -20px);
+    transition: all 1s;
+  }
+
+
 }

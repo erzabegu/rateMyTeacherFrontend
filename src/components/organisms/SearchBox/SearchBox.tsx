@@ -18,8 +18,17 @@ const SearchBox = (props: Props) => {
     return (
         <Container>
             <Row className='mx-5 mt-5 px-5' lg={11}>
-                <Col className={'d-flex flex-column align-self-center mt-5'} style={{textAlign: 'center'}}>
-                    <h5 className='mb-4' style={{color: '#283779', fontWeight: 'bold'}}>Enter a teacher to get
+                <Col className={'d-flex flex-column align-self-center col-6 mx-auto '}
+                     style={{textAlign: 'center', color: '#ff5421', marginTop: '130px'}}>
+                    <span>RATE TEACHER</span>
+                    <h1 style={{
+                        color: 'white',
+                        fontWeight: 'bold',
+                        letterSpacing: '2px',
+                        textTransform: 'capitalize',
+                        padding: '20px 0px'
+                    }}>Best online platform to <br/> rate your teachers</h1>
+                    <h5 className='mb-4' style={{color: 'white'}}>Enter a teacher to get
                         started</h5>
                     <TextInput className={'styledSearchBox'} placeholder='Enter your professor'
                                onChange={props.onChange}/>
@@ -36,9 +45,9 @@ const SearchBox = (props: Props) => {
                             </>)}
                     </List>
                 </Col>
-                <Col className={'d-flex justify-content-left mt-4'} style={{paddingLeft: '100px'}}>
-                    <DefaultImage className={'professorImage'} src={Professor} fluid/>
-                </Col>
+                {/*<Col className={'d-flex justify-content-left mt-4'} style={{paddingLeft: '100px'}}>*/}
+                {/*    <DefaultImage className={'professorImage'} src={Professor} fluid/>*/}
+                {/*</Col>*/}
             </Row>
         </Container>
     )
