@@ -1,12 +1,8 @@
 import React from 'react'
 import {
     Book,
-    Envelope,
     EnvelopeFill,
-    Facebook,
-    GeoAltFill, Instagram,
-    Messenger,
-    Telephone,
+    GeoAltFill,
     TelephoneFill
 } from "react-bootstrap-icons";
 import styles from './index.module.scss'
