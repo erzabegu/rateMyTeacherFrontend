@@ -1,4 +1,4 @@
-import { RequestMethods } from "../../enums";
+import {RequestMethods} from "../../enums";
 import request from "../../utils/axiosInstace";
 
 export const getProfessors = async () => {
@@ -12,8 +12,7 @@ export const getProfessors = async () => {
 export const addProfessors = async (data: any) => {
     try {
         return await request(RequestMethods.POST, 'professors', data)
-    }
-    catch (e) {
+    } catch (e) {
         console.log(e)
     }
 }
@@ -21,8 +20,7 @@ export const addProfessors = async (data: any) => {
 export const getProfessorByName = async (param: any) => {
     try {
         return await request(RequestMethods.GET, `professors/byName/${param}`, null)
-    }
-    catch (e) {
+    } catch (e) {
         console.log(e)
     }
 }
@@ -31,8 +29,7 @@ export const modifyProfessors = async (params: any, data: any) => {
     console.log('hi')
     try {
         return await request(RequestMethods.PUT, `professors/${params}`, data);
-    }
-    catch (e) {
+    } catch (e) {
         console.log(e)
     }
 }
@@ -40,8 +37,7 @@ export const modifyProfessors = async (params: any, data: any) => {
 export const deleteProfessors = async (params: any) => {
     try {
         return await request(RequestMethods.DELETE, 'professors', null, params);
-    }
-    catch (e) {
+    } catch (e) {
         console.log(e)
     }
 }
@@ -49,8 +45,7 @@ export const deleteProfessors = async (params: any) => {
 export const getById = async (params: any) => {
     try {
         return await request(RequestMethods.GET, `professors/${params}`, null)
-    }
-    catch (e) {
+    } catch (e) {
         return e
     }
 }
@@ -58,8 +53,15 @@ export const getById = async (params: any) => {
 export const showResults = async (data: any) => {
     try {
         return await request(RequestMethods.GET, `professors/results/${data}`, null)
-    }
-    catch (e) {
+    } catch (e) {
         return e
+    }
+}
+
+export const getBySchool = async (data: any) => {
+    try {
+        return await request(RequestMethods.GET, `professors/bySchoolName/${data}`, null)
+    } catch (e) {
+        console.log(e)
     }
 }

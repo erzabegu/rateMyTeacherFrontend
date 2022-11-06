@@ -37,6 +37,7 @@ const Header = ({initialState, register, login, color, textColor}: Props) => {
     };
     const handleClose = () => {
         setAnchorEl(null);
+        navigate('/')
     };
 
     useEffect(() => {

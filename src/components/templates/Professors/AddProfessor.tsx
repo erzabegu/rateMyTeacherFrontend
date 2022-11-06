@@ -51,7 +51,6 @@ const AddProfessor = ({ show, handleClose, rowToEdit, setProfessors }: Props) =>
 
 
     const _addProfessor = (data: any) => {
-        console.log(data, 'dataa')
         if (data.professorName !== "" && data.schoolName !== "" && data.departments.length > 0) {
             addProfessors(data).then((res: any) => {
                 if (res.statusText === "Created") {

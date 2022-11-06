@@ -12,7 +12,7 @@ interface Props {
 const ProfessorsList = ({ professorsList, quality, numberOfRatings }: Props) => {
     return (
         <Row className="mt-5">
-            {professorsList.map((prof, index) => <ProfessorCard key={index} numberOfRatings={numberOfRatings} quality={quality} {...prof} />)}
+            {/*{professorsList.map((prof, index) => <ProfessorCard key={index} numberOfRatings={numberOfRatings} quality={quality} {...prof} />)}*/}
         </Row>
     )
 }

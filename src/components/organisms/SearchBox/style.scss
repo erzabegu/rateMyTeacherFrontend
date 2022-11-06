@@ -6,4 +6,13 @@
     border-radius: 10px;
     margin-bottom: 10px;
     background-color: #f2f2f2 !important;
+    &:focus {
+        box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px !important;
+        border: 1px solid orange !important;
+    }
+
+    &:focus-visible {
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px !important;
+        border: 1px solid orange !important;
+    }
 }

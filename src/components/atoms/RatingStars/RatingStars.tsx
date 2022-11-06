@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement } from "react";
 import { Rating } from 'react-simple-star-rating'
 
 interface Props {
@@ -14,7 +14,7 @@ interface Props {
 const RatingStars = ({ rating, fullIcon, emptyIcon, readonly, tooltipArray, showTooltip, tooltipStyle, handleRating }: Props) => {
 
     return <>
-        <Rating onClick={handleRating} ratingValue={rating} tooltipStyle={tooltipStyle} showTooltip={showTooltip} tooltipArray={tooltipArray} fullIcon={fullIcon} emptyIcon={emptyIcon} readonly={readonly} />
+        <Rating  fillColor={'#FF5420'} onClick={handleRating} ratingValue={rating} tooltipStyle={tooltipStyle} showTooltip={showTooltip} tooltipArray={tooltipArray} fullIcon={fullIcon} emptyIcon={emptyIcon} readonly={readonly} />
     </>
 }
 

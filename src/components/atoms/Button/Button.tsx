@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, ButtonProps } from "react-bootstrap";
-import { Size } from "../../../enums";
+import styles from './index.module.scss'
 
 
 interface Props extends ButtonProps {
@@ -8,7 +8,7 @@ interface Props extends ButtonProps {
 }
 
 const MyButton = ({ title, ...props }: Props) => {
-    return <Button {...props}>{title}</Button>
+    return <Button className={styles.custom} {...props}>{title}</Button>
 }
 
 export default MyButton

@@ -1,0 +1,11 @@
+.custom {
+  &:focus {
+    outline: 1px solid black !important;
+    box-shadow: none !important;
+  }
+
+  &:focus-visible {
+    outline: 1px solid black !important;
+    box-shadow: none !important;
+  }
+}

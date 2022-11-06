@@ -19,11 +19,11 @@ const Login = () => {
     }
 
     const _login = (data: any) => {
-        if (!data?.email && !data.password) {
+        if (data?.email?.length > 0 && data.password?.length > 0) {
             if (!data?.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
                 toast.warning("Invalid email")
             } else if (data?.password.length < 6) {
-                toast.warning("Pasword must be at least 6 characters")
+                toast.warning("Password must be at least 6 characters")
             } else if (data?.email && data?.password) {
                 login(data).then((response: any) => {
                     if (response?.response?.data?.message === "invalid credentials") {

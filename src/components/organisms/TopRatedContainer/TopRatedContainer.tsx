@@ -24,8 +24,7 @@ const TopRatedContainer = () => {
             Most rated Professors
         </Row>
         <Row>
-            {professors.map((professor: any) => <><ProfessorCard {...professor} />
-                <RatingStars readonly={true} rating={professor.ratin} /></>)}
+
         </Row>
     </Container>
 }

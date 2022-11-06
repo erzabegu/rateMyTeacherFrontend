@@ -8,4 +8,5 @@ export interface ProfessorType {
     professorImage?: string;
     departmentName?: string;
     schoolName?: string;
+    departments?:Array<any>
 }
