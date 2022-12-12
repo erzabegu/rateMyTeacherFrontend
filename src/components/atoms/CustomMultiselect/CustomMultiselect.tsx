@@ -27,16 +27,6 @@ const CustomMultiselect = ({ label, type, name, value, autoComplete, options, is
 
     }
 
-    const CustomOption = ({ data, innerProps, isDisabled }: any) => {
-        if (!isDisabled) {
-            return <div {...innerProps}>
-                <div>{data.label}</div>
-            </div>
-        } else {
-            return null
-        }
-    }
-
     return <div>
         <div>{label}</div>
         <Select

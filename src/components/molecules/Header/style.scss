@@ -1,31 +1,39 @@
 @import '../../../styles/index.scss';
 
 .loginButtonStyle {
-    background-color: transparent !important;
-    border-radius: 0 !important;
-    //color: $textColor  !important;
-    border: none !important;
-    font-size: 15px !important;
-    border-right: 1px solid grey !important;
+  background-color: transparent !important;
+  border-radius: 0 !important;
+  //color: $textColor  !important;
+  border: none !important;
+  font-size: 15px !important;
+  border-right: 1px solid grey !important;
 
-    &:focus {
-        border: none !important;
-    }
+  &:focus {
+    border: none !important;
+  }
 }
 
 .registerButtonStyle {
-    background-color: transparent !important;
-    border-radius: 0 !important;
-    //color: $textColor  !important;
-    font-size: 15px !important;
-    border: none !important;
+  background-color: transparent !important;
+  border-radius: 0 !important;
+  //color: $textColor  !important;
+  font-size: 15px !important;
+  border: none !important;
 
-    &:focus {
-        border: none !important;
-    }
+  &:focus {
+    border: none !important;
+  }
 }
 
 .styledAvatar {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.container {
+  padding: 10px 40px !important;
+  margin-top: 0px !important;
+}
+.title{
+  padding-left: 10px;
 }

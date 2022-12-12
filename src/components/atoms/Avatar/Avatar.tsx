@@ -7,11 +7,9 @@ interface Props extends UserType {
 }
 
 const Avatar = (props: Props) => {
-    return (
-        <>
-            <button onClick={props.onClick} className='avatar'>{props.firstName[0].toUpperCase()}</button>
-        </>
-    )
+    return <button onClick={props.onClick} className='avatar'>{props.firstName[0].toUpperCase()}</button>
+
+
 }
 
 export default Avatar

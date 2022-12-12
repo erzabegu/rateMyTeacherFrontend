@@ -15,9 +15,6 @@ const CheckInputs = (props: Props) => {
         />
         )}
     </Form>
-
-    // qitu munesh me shti input type checkbox ose radio
-
 }
 
 export default CheckInputs
