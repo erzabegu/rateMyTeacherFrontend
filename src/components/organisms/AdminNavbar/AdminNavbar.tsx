@@ -6,8 +6,8 @@ import './AdminNavbar.scss'
 const AdminNavbar = () => {
     const navigate = useNavigate();
     const pages = [
-        { path: '', title: 'Dashboard' },
-        { path: 'schools', title: 'Schools' },
+        // { path: '', title: 'Dashboard' },
+        { path: '', title: 'Schools' },
         { path: 'professors', title: 'Professors' },
         { path: 'users', title: 'Users' },
         { path: 'departments', title: 'Departments' },

@@ -3,6 +3,7 @@ import { Alert } from 'react-bootstrap';
 import { getDepartments } from '../../../services'
 import { CustomTable } from '../../molecules/Table';
 import AddDepartmentsDialog from './AddDepartmentsDialog';
+import {PlusCircle} from "react-bootstrap-icons";
 
 const DepartmentsTemplate = () => {
 
@@ -31,10 +32,10 @@ const DepartmentsTemplate = () => {
     const data = React.useMemo(() => departments, [departments]);
     return (
         <>
-            <div onClick={() => {
-                setRowToEdit(undefined)
-                setShow(true)
-            }} >+</div>
+            <PlusCircle color={"#283779"} height={20} width={20} style={{margin:'5px'}} onClick={() => {
+                setRowToEdit(undefined);
+                setShow(true);
+            }} />
             <AddDepartmentsDialog show={show} onClose={() => {
                 setRowToEdit(undefined)
                 setShow(false)

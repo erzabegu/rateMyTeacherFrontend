@@ -16,7 +16,6 @@ const SchoolsTemplate = () => {
 
     useEffect(() => {
         getSchools().then((res: any) => {
-            console.log(res.data)
             setSchools(res.data)
         })
     }, [])
@@ -47,7 +46,7 @@ const SchoolsTemplate = () => {
     };
 
     return <>
-        <PlusCircle color={"#283779"} height={20} width={20} onClick={() => {
+        <PlusCircle color={"#283779"} height={20} width={20} style={{margin:'5px'}} onClick={() => {
             setRowToEdit(undefined);
             setShow(true);
         }} />

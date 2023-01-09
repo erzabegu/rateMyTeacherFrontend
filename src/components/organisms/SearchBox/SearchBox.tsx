@@ -17,7 +17,7 @@ const SearchBox = (props: Props) => {
     const navigate = useNavigate();
     return (
         <Container>
-            <Row className='mx-5 mt-5 px-5' lg={11}>
+            <Row className='mx-5 mt-5 px-5' lg={11} sm={12}>
                 <Col className={'d-flex flex-column align-self-center col-6 mx-auto '}
                      style={{textAlign: 'center', color: '#ff5421', marginTop: '130px'}}>
                     <span>RATE TEACHER</span>

@@ -3,6 +3,7 @@ import { Button, Col, Modal } from 'react-bootstrap';
 import { getProfessors, getUserRoles, getUsers } from '../../../services'
 import { CustomTable } from '../../molecules/Table'
 import AddUserDialog from './AddUserDialog';
+import {PlusCircle} from "react-bootstrap-icons";
 
 const Users = () => {
 
@@ -44,10 +45,10 @@ const Users = () => {
     const handleShow = () => setShow(true);
 
     return <>
-        <div onClick={() => {
-            setRowToEdit(undefined)
-            setShow(true)
-        }}>+</div>
+        <PlusCircle color={"#283779"} height={20} width={20} style={{margin:'5px'}} onClick={() => {
+            setRowToEdit(undefined);
+            setShow(true);
+        }} />
         <AddUserDialog show={show} onClose={() => {
             setRowToEdit(undefined)
             setShow(false)

@@ -37,14 +37,7 @@ function Rate() {
     }, [id])
 
     const _modifyProfessor = (professor: any, rate: any) => {
-        console.log(rate.rating, 'rate.rating')
-        console.log(rate.difficult, 'rate.difficult')
-        console.log(rate.takeAgain, 'rate.takeAgain')
-        console.log(rate.materials, 'rate.mater')
-        console.log(rate.review, 'rate.rev')
-
-
-        if (rate.rating && rate.difficult && rate.takeAgain.length > 0 && rate.materials.length > 0 && rate.review.length > 0) {
+        if (rate.rating && rate.difficult && rate.takeAgain.length > 0 && rate.materials.length > 0 && rate.review.length > 0){
             modifyProfessors(professor._id, {
                 ...professor, ratings: [...professor.ratings,
                     {questionType: "RateYourProfessor", response: rate.rating && rate?.rating},

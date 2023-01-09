@@ -39,7 +39,7 @@ const Header = ({initialState, register, login, color, textColor}: Props) => {
     };
 
 
-    return <Container fluid style={{backgroundColor: color}} className={'container'}>
+    return <div style={{backgroundColor: color, width:'100vw'}} className={'container1'}>
         <Row className='pt-2 pb-1'>
             <Col xs={7} md={9} xl={10}>
                 <div onClick={() => navigate('/')} style={{cursor: 'pointer', color: textColor ?? "#283779"}}>
@@ -90,7 +90,7 @@ const Header = ({initialState, register, login, color, textColor}: Props) => {
                 </Menu>
             </Col>
         </Row>
-    </Container>
+    </div>
 }
 
 export default Header

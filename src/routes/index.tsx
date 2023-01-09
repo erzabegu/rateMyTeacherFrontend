@@ -60,8 +60,8 @@ const Routing = () => {
             path: 'admin',
             element: <ProtectedRoute isAuth={user.userRoleName === "admin"} component={AdminPanel} />,
             children: [
-                { path: '', element: <h1>Dashboard</h1> },
-                { path: 'schools', element: <SchoolsTemplate /> },
+                // { path: '', element: <h1>Dashboard</h1> },
+                { path: '', element: <SchoolsTemplate /> },
                 { path: 'professors', element: <Professors /> },
                 { path: 'users', element: <UsersTemplate /> },
                 { path: 'departments', element: <DepartmentsTemplate /> }

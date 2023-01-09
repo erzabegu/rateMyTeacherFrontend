@@ -49,11 +49,10 @@ const Professors = () => {
     };
     const handleShow = () => setShow(true);
     return <>
-        <PlusCircle color={"#283779"} height={20} width={20}
-            onClick={() => {
-                setRowToEdit(undefined);
-                setShow(true);
-            }} />
+        <PlusCircle color={"#283779"} height={20} width={20} style={{margin:'5px'}} onClick={() => {
+            setRowToEdit(undefined);
+            setShow(true);
+        }} />
         {show && <AddProfessor
             rowToEdit={rowToEdit}
             show={show}
